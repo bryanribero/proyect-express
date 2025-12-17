@@ -7,7 +7,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/productos', productRoutes)
+app.use('/api/v1/productos', productRoutes)
 
 app.use(handle404)
 

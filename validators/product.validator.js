@@ -1,6 +1,13 @@
 import { body } from 'express-validator'
 
-export const nameValidator = [
-  body('name').isLength({ min: 5 }).withMessage('Name debe contener al menos 5 caracteres'),
-  body('name').isLength({ max: 10 }).withMessage('Name demasiado largo, debe de contener menos o igual a 10 caracteres')
+export const validatorPostProduct = [
+  body('nombre_producto').notEmpty().withMessage('El nombre del producto no puede estar vacio'),
+  body('precio_producto')
+    .exists()
+    .withMessage('El precio es requerido')
+    .toFloat()
+    .isFloat({ gt: 0 })
+    .withMessage('El precio debe ser un numero valido')
 ]
+
+export const validatorPriceProduct = [body('precio_producto').toFloat()]

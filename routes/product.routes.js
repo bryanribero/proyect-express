@@ -1,12 +1,12 @@
 import { Router } from 'express'
 import { validate } from '../middlewares/validate.js'
 import { getProduct, postProduct } from '../controllers/product.controller.js'
-import { nameValidator } from '../validators/product.validator.js'
+import { validatorPostProduct, validatorPriceProduct } from '../validators/product.validator.js'
 
 const router = Router()
 
-router.get('/', getProduct)
+router.get('/', validatorPriceProduct, getProduct)
 
-router.post('/', nameValidator, validate('Error al enviar producto', 400), postProduct)
+router.post('/', validatorPostProduct, validate('Error al cargar producto', 400), postProduct)
 
 export default router
